@@ -27,40 +27,51 @@ describe('Round', function() {
   });
 
   it('should be an instance of Round', function() {
-    const round = new Round();
+    const round = new Round(deck);
     expect(round).to.be.an.instanceof(Round);
   });
 
   it('should hold cards as an array', function() {
+    const round = new Round(deck);
     expect(round.deck.cards).to.deep.equal([card1, card2, card3]);
   });
 
   it('should return the current card being played', function() {
+    const round = new Round(deck);
     expect(round.returnCurrentCard()).to.deep.equal(card1)
   });
 
   describe('takeTurn', function() {
 
     it('should have a turn counter that starts at 0', function() {
+      const round = new Round(deck);
       expect(round.turn).to.deep.equal(0);
     })
 
     it('should create a new turn instance when a guess is made', function() {
+      const round = new Round(deck);
       round.makeGuess("array");
       expect(round.makeGuess()).to.deep.equal();
     });
 
-    it.skip('should increase the turn count after every guess', function() {
-      round.makeGuess();
-      expect(round.turn).to.deep.equal(1);
+    it('should increase the turn count after every guess', function() {
+      const round = new Round(deck);
+      round.makeGuess("array");
+      round.makeGuess("function");
+      round.makeGuess("object");
+      expect(round.turn).to.deep.equal(3);
     });
 
-    it.skip('should make the next card become the current card', function() {
-
+    it('should make the next card become the current card', function() {
+      const round = new Round(deck);
+      round.makeGuess("array");
+      expect(round.returnCurrentCard()).to.deep.equal(card2)
     });
 
-    it.skip('should keep record of the guesses - incorrect guesses should be stored in an incorrectGuesses array', function() {
-
+    it('should keep record of the guesses - incorrect guesses should be stored in an incorrectGuesses array', function() {
+      const round = new Round(deck);
+      round.makeGuess("function");
+      expect(round.incorrectGuesses.length).to.deep.equal(1)
     });
 
     it.skip('should give feedback after each guess whether it is correct or not', function() {
@@ -68,8 +79,12 @@ describe('Round', function() {
     });
   })
 
-  it.skip('should calculate and return a percentage of correct guesses', function() {
-    // calculatePercentageCorrect
+  it('should calculate and return a percentage of correct guesses', function() {
+    const round = new Round(deck);
+    round.makeGuess('array');
+    round.makeGuess('mutator method');
+    round.makeGuess('iteration method');
+    expect(round.calculatePercentageCorrect()).to.deep.equal(67);
   });
 
   it.skip('should end the round with a message', function() {
