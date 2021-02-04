@@ -38,7 +38,7 @@ describe('Round', function() {
 
   it('should return the current card being played', function() {
     const round = new Round(deck);
-    expect(round.returnCurrentCard()).to.deep.equal(card1)
+    expect(round.returnCurrentCard()).to.equal(card1)
   });
 
   describe('takeTurn', function() {
@@ -47,12 +47,6 @@ describe('Round', function() {
       const round = new Round(deck);
       expect(round.turn).to.deep.equal(0);
     })
-
-    it('should create a new turn instance when a guess is made', function() {
-      const round = new Round(deck);
-      round.makeGuess("array");
-      expect(round.makeGuess()).to.deep.equal();
-    });
 
     it('should increase the turn count after every guess', function() {
       const round = new Round(deck);
@@ -74,8 +68,9 @@ describe('Round', function() {
       expect(round.incorrectGuesses.length).to.deep.equal(1)
     });
 
-    it.skip('should give feedback after each guess whether it is correct or not', function() {
-
+    it('should give feedback after each guess whether it is correct or not', function() {
+      const round = new Round(deck);
+      expect(round.makeGuess('array')).to.equal('correct!');
     });
   })
 
@@ -87,8 +82,13 @@ describe('Round', function() {
     expect(round.calculatePercentageCorrect()).to.deep.equal(67);
   });
 
-  it.skip('should end the round with a message', function() {
-
+  it('should end the round with a message', function() {
+    const round = new Round(deck);
+    round.makeGuess('array');
+    round.makeGuess('mutator method');
+    round.makeGuess('iteration method');
+    expect(round.endRound()).to.equal(`** Round over! ** You answered 67% of the questions correctly!
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`)
   });
 
 });

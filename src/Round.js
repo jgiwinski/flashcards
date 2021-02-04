@@ -16,20 +16,21 @@ class Round {
   }
   makeGuess(guess) {
     const playerTurn = new Turn(guess, this.returnCurrentCard())
+    this.countTurn();
     if(!playerTurn.evaluateGuess()) {
       this.incorrectGuesses.push(playerTurn.card.id);
-      playerTurn.giveFeedback();
+      return playerTurn.giveFeedback();
     } else {
-      playerTurn.giveFeedback();
+      return playerTurn.giveFeedback();
     }
-    this.countTurn();
     this.returnCurrentCard();
   }
   calculatePercentageCorrect() {
     return Math.round(100 - this.incorrectGuesses.length / this.deck.cards.length * 100);
   }
   endRound() {
-
+    return `** Round over! ** You answered ${this.calculatePercentageCorrect()}% of the questions correctly!
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`;
   }
 }
 
