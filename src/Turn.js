@@ -19,10 +19,10 @@ class Turn {
     }
   }
   giveFeedback() {
-    if(this.evaluateGuess()){
-      return 'correct!';
-    } else {
+    if(!this.evaluateGuess()){
       return 'incorrect!';
+    } else {
+      return 'correct!';
     }
   }
 }
