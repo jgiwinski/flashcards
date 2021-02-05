@@ -14,10 +14,9 @@ describe('Game', function() {
     const game = new Game();
     expect(game).to.be.an.instanceof(Game);
   });
-
+  
   it('should have a placeholder for the current round', function() {
     const game = new Game();
     expect(game.currentRound).to.equal();
   });
-
 });
