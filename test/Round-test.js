@@ -46,7 +46,7 @@ describe('Round', function() {
     it('should have a turn counter that starts at 0', function() {
       const round = new Round(deck);
       expect(round.turn).to.deep.equal(0);
-    })
+    });
 
     it('should increase the turn count after every guess', function() {
       const round = new Round(deck);
@@ -72,7 +72,7 @@ describe('Round', function() {
       const round = new Round(deck);
       expect(round.makeGuess('array')).to.equal('correct!');
     });
-  })
+  });
 
   it('should calculate and return a percentage of correct guesses', function() {
     const round = new Round(deck);
