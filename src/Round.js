@@ -26,6 +26,8 @@ class Round {
     return Math.round(100 - this.incorrectGuesses.length / this.deck.cards.length * 100);
   }
   endRound() {
+    console.log(`** Round over! ** You answered ${this.calculatePercentageCorrect()}% of the questions correctly!
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`); 
     return `** Round over! ** You answered ${this.calculatePercentageCorrect()}% of the questions correctly!
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`;
   }
